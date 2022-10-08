@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Revisa los Afiliados</title>
+  <meta name="author" content="Nelson Andres Montealegre">
+  <meta name="description" content="Blog de tecnologias como HTML,CSS,JavaScript">
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+
+
+
+</head>
+
+<body onload="mostrarCitas()">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Bienvenido</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="../index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="afiliados.html">Afiliados</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="empleador.html">Empleadores</a>
+          </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="independientes.html">Independientes</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <section class="container-center" id="padre" poster="poster.JPG">
+    <div id="panelAfiliados">
+
+        <div class="container mt-3 col-6">
+          <h2 style="text-align:center;"> Crear Cita de Afiliado </h2>
+            <div class="mb-2 mt-3">
+              <label for="tipoId">Tipo Identificacion:</label>
+              <select name="tipoId" class="form-select" id="selectIdentificacion" onchange="selectTipoDoc()">
+                <option value="0" selected>Elige</option>
+                <option value="1">Cedula de Ciudadania</option>
+                <option value="2">Tarjeta de Identidad</option>
+                <option value="3">Cedula de Extranjeria</option>
+                <option value="4">Otro</option>
+              </select>
+            </div>
+            <div class="mb-2 mt-2">
+              <label for="numero">Numero identificacion:</label>
+              <input type="number" class="form-control" id="numeroIdentifiacion" placeholder="1010142247" name="numero" required>
+            </div>
+            <div class="mb-2 mt-2">
+              <label for="paciente">Nombre Afiliado:</label>
+              <input type="text" class="form-control" id="nombreAfiliado" placeholder="paciente" name="paciente" required>
+            </div>
+            <div class="mb-2">
+              <label for="fecha">Fecha Cita:</label>
+              <input type="date" class="form-control" id="fechaCita" name="fecha" required>
+            </div>
+            <div class="mb-2 mt-2">
+              <label for="especialidad">Especialidad:</label>
+              <select name="especialidad" class="form-select" id="selectTipoEspeciliad" onchange="selectTipoEspecialidadF()">
+                <option value="0" selected>Elige</option>
+                <option value="1">Medico General</option>
+                <option value="2">Pediatria</option>
+                <option value="3">Neurologo</option>
+                <option value="4">Cardiologo</option>
+              </select>
+            </div>
+            <div class="d-flex">
+              <div class="divBtnRegistarAfiliado p-2">
+                <button class="btn btn-success" onclick="crearCita()">Registrar</button>
+              </div>
+              <div class="divBtnRegistarAfiliado p-2">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button>
+              </div>
+              <div class="divBtnRegistarAfiliado p-2">
+                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal2">Eliminar</button>
+              </div>
+            </div>
+        </div>
+
+<!-- Modal Editar -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Cita</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-2 mt-1">
+          <div class="mb-2">
+            <label for="numero">Numero identificacion:</label>
+            <input type="number" class="form-control" id="numeroIdentifiacionEditar" placeholder="1010142247" name="numero" required>
+          </div>
+
+          <label for="tipoId">Tipo Identificacion:</label>
+          <select name="tipoId" class="form-select" id="selectIdentificacionEditar" onchange="selectTipoDoc()">
+            <option value="0" selected>Elige</option>
+            <option value="1">Cedula de Ciudadania</option>
+            <option value="2">Tarjeta de Identidad</option>
+            <option value="3">Cedula de Extranjeria</option>
+            <option value="4">Otro</option>
+          </select>
+        </div>
+
+        <div class="mb-2 mt-2">
+          <label for="paciente">Nombre Afiliado:</label>
+          <input type="text" class="form-control" id="nombreAfiliadoEditar" placeholder="paciente" name="paciente" required>
+        </div>
+        <div class="mb-2">
+          <label for="fecha">Fecha Cita:</label>
+          <input type="date" class="form-control" id="fechaCitaEditar" name="fecha" required>
+        </div>
+        <div class="mb-2 mt-2">
+          <label for="especialidad">Especialidad:</label>
+          <select name="especialidad" class="form-select" id="selectTipoEspeciliadEditar" onchange="selectTipoEspecialidadF()">
+            <option value="0" selected>Elige</option>
+            <option value="1">Medico General</option>
+            <option value="2">Pediatria</option>
+            <option value="3">Neurologo</option>
+            <option value="4">Cardiologo</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" onclick="actualizarDatos()">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Eliminar -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar Cita</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div  class="p-2">
+          <label for="input">Numero de Identificacion:</label>
+          <input type="text" placeholder="1010142247" class="form-control" id="identificacionEliminar">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" onclick="eliminarCita()">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+      <div class="container">
+
+        <div class="mt-3">
+          <table class="table table-hover">
+
+
+          </table>
+        </div>
+
+
+
+        <div class="container mt-4">
+          <div class="titulo mt-4 mb-4">
+            <h1 style="text-align:center ;">Tabla Afiliados</h1>
+          </div>
+          <table id="example" class="display" style="width:100%">
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Numero</th>
+                <th>Afiliado</th>
+                <th>Fecha</th>
+                <th>Especialidad</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyAfiliados">
+
+            </tbody>
+          </table>
+          <script>
+            $(document).ready(function () {
+              $('#example').DataTable();
+            });
+          </script>
+
+        </div>
+
+
+      </div>
+    </div>
+
+  </section>
+
+
+  <footer>
+
+  </footer>
+
+  <script src="../app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</body>
+
+</html>
