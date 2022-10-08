@@ -9,11 +9,14 @@
 .container{
   display: flex;
   flex-direction: column;
-  height: 500px;
+  height: 540px;
   justify-content: center;
 }
-.bodyInicio{
-  background-color: var(--escala-menos-claro);
+.navbar-collapse{
+  justify-content: flex-end;
+}
+.navbar-collapse ul li{
+  padding: 0px 8px;
 }
 
 nav{
@@ -50,7 +53,6 @@ display: flex;
   text-align: justify;
   padding: 20px;
   font-size: 30px;
-  color: white;
 }
 .contenedorCSS img{
   border-radius: 20px;
@@ -127,6 +129,31 @@ color: white
   background-color: var(--footer) !important;
   border-radius: 20px;
 }
+
+
+.divFormTabla{
+  display: flex;
+  padding: 30px;
+}
+
+
+.contenedorForm{
+
+  background-color: var(--escala-menos-claro);
+  padding: 26px;
+  border-radius: 8px;
+  color: white;
+  box-shadow: 2px 3px 10px black;
+}
+
+
+.divBotononesR{
+  display: flex;
+  margin-top: 6px;
+ justify-content: flex-end;
+}
+
+
 
 footer{
   padding: 10px 0px;
