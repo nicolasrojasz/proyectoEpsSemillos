@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Revisa los Independientes</title>
+  <title>Revisa los Afiliados</title>
   <meta name="author" content="Nelson Andres Montealegre">
   <meta name="description" content="Blog de tecnologias como HTML,CSS,JavaScript">
   <meta name="keywords" content="HTML, CSS, JavaScript">
@@ -22,7 +22,7 @@
 
 </head>
 
-<body class="bodyAfi" onload="mostrarIndependientes()">
+<body class="bodyAfi" onload="mostrarCitasEmpleadores()">
 
 
 
@@ -61,14 +61,14 @@
   <div class="divFormTabla">
 
     <div class="container contenedorForm mt-5 col-4">
-      <h2 style="text-align:center; margin-top: 14px; "> Crear Independientes </h2>
+      <h2 style="text-align:center; margin-top: 14px; "> Crear Empleador </h2>
       
       
       <div class="contenedorInputsEmpleadores">
      
         <div class="col-6">
           <label for="tipoId">Tipo Identificacion:</label>
-          <select name="tipoId" class="form-select" id="selectIdenIndepedientes" onchange="selectTipoDocInde()">
+          <select name="tipoId" class="form-select" id="selectIdentificacionEmpleador" onchange="selectTipoDocEmpleadorF()">
             <option value="0" selected>Elige</option>
             <option value="1">Cedula de Ciudadania</option>
             <option value="2">Tarjeta de Identidad</option>
@@ -79,18 +79,18 @@
       
         <div class="col-6">
           <label for="numero">Numero identificacion:</label>
-          <input type="number" class="form-control" id="numeroIdenIndependientes" placeholder="1010142247" required>
+          <input type="number" class="form-control" id="numeroIdentifiacionEmpleador" placeholder="1010142247" required>
         </div>
      </div>
 
     <div class="contenedorInputsEmpleadores">
       <div class="col-6">
-        <label for="paciente">Nombre:</label>
-        <input type="text" class="form-control" id="nombreIndependiente" placeholder="Nicolas Rojas">
+        <label for="paciente">Empresa:</label>
+        <input type="text" class="form-control" id="nombreEmpresa" placeholder="SIESA">
       </div>
       <div class="col-6">
         <label for="fecha">Ciudad:</label>
-        <select name="especialidad" class="form-select" id="selectTipoCiudadInde" onchange="selectTipoCiudadInde()">
+        <select name="especialidad" class="form-select" id="selectTipoCiudad" onchange="selectTipoCiudadF()">
           <option value="0" selected>Elige</option>
           <option value="1">Cali</option>
           <option value="2">Medellin</option>
@@ -104,29 +104,28 @@
     <div class="contenedorInputsEmpleadores">
       <div class="col-6">
         <label for="especialidad">Direccion:</label>
-        <input type="text" class="form-control" id="direccionInde" placeholder="Cra 1 #66-42" required>
+        <input type="text" class="form-control" id="numeroDireccion" placeholder="Cra 1 #66-42" required>
       </div>
       <div class="col-6">
         <label for="especialidad">Correo:</label>
-        <input type="email" class="form-control" id="correoIndependiente" placeholder="nicolas@gmail.com" required>
+        <input type="email" class="form-control" id="correoEmpleador" placeholder="nicolas@gmail.com" required>
       </div>
     </div>
 
 
     <div class="contenedorInputsEmpleadores">
       <div class="col-6">
-        <label for="especialidad">Barrio:</label>
-        <input type="text" class="form-control" id="barrioInde" placeholder="Lopez" required>
+        <label for="especialidad">Codigo Postal:</label>
+        <input type="number" class="form-control" id="codigoPostal" placeholder="23432" required>
       </div>
       <div class="col-6">
-        <label for="especialidad">Sede:</label>
-        <select name="especialidad" class="form-select" id="selectSede" onchange="selectTipoSede()">
+        <label for="especialidad">Regimen:</label>
+        <select name="especialidad" class="form-select" id="selectTipoRegimen" onchange="selectTipoRegimenF()">
           <option value="0" selected>Elige</option>
-          <option value="1">Norte</option>
-          <option value="2">Sur</option>
-          <option value="3">Este</option>
-          <option value="4">Oeste</option>
-          <option value="5">Centro</option>
+          <option value="1">Responsable de IVA</option>
+          <option value="2">Persona natural responsable de IVA </option>
+          <option value="3">Regimen Especial</option>
+          <option value="4">Persona natural no responsable de IVA</option>
         </select>
       </div>
     </div>
@@ -140,13 +139,13 @@
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button>
       </div>
       <div class="divBtnRegistarAfiliado p-2">
-        <button class="btn btn-success" onclick="crearIndependiente()">Registrar</button>
+        <button class="btn btn-success" onclick="crearEmpleador()">Registrar</button>
       </div>
     </div>
   </div>
 
 
-  <div class="container col-8">
+  <div class="container col-7">
     <div class="container mt-2">
       <div class="titulo mt-2 mb-4">
         <h1 style="text-align:center ;">Tabla Empleadores</h1>
@@ -154,17 +153,15 @@
       <table id="example" class="display" style="width:100%">
         <thead>
           <tr>
-            <th>Tipo Identificacion</th>
-            <th>Numero identificacion</th>
-            <th>Nombre</th>
-            <th>Ciudad</th>
-            <th>Direccion</th>
+            <th>Tipo</th>
+            <th>Numero Identificacion</th>
+            <th>Empresa</th>
             <th>Correo</th>
-            <th>Barrio</th>
-            <th>Sede</th>
+            <th>Regimen</th>
+            <th>Direccion</th>
           </tr>
         </thead>
-        <tbody id="tbodyIndependientes">
+        <tbody id="tbodyEmpleadores">
 
         </tbody>
       </table>
@@ -183,18 +180,15 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Independiente</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Empleador</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="contenedorInputsEmpleadores">
-            <div class="col-6">
-              <label for="numero">Numero identificacion:</label>
-              <input type="number" class="form-control" id="numeroIdenIndependientesEditar" placeholder="1010142247" required>
-            </div>
-            <div class="col-6">
+          
+     
+            <div class="mb-2 mt-3">
               <label for="tipoId">Tipo Identificacion:</label>
-              <select name="tipoId" class="form-select" id="selectIdenIndepedientesEditar" onchange="selectTipoDocIndeEditar()">
+              <select name="tipoId" class="form-select" id="selectIdenEmpleadorEditar" onchange="selectIdenEmpleadorEditarF()">
                 <option value="0" selected>Elige</option>
                 <option value="1">Cedula de Ciudadania</option>
                 <option value="2">Tarjeta de Identidad</option>
@@ -203,17 +197,20 @@
               </select>
             </div>
           
-
-         </div>
+            <div class="mb-2 mt-2">
+              <label for="numero">Numero identificacion:</label>
+              <input type="number" class="form-control" id="numeroIdenEmpleadorEditar" placeholder="1010142247" required>
+            </div>
+         
     
-        <div class="contenedorInputsEmpleadores">
-          <div class="col-6">
-            <label for="paciente">Nombre:</label>
-            <input type="text" class="form-control" id="nombreIndependienteEditar" placeholder="Nicolas Rojas">
+          <div class="mb-2 mt-2">
+            <label for="paciente">Empresa:</label>
+            <input type="text" class="form-control" id="nombreEmpresaEditar" placeholder="SIESA">
           </div>
-          <div class="col-6">
+
+          <div class="mb-2">
             <label for="fecha">Ciudad:</label>
-            <select name="especialidad" class="form-select" id="selectTipoCiudadIndeEditar" onchange="selectTipoCiudadIndeEditar()">
+            <select name="especialidad" class="form-select" id="selectCiudadEditar" onchange="selectTipoCiudadEditar()">
               <option value="0" selected>Elige</option>
               <option value="1">Cali</option>
               <option value="2">Medellin</option>
@@ -221,42 +218,41 @@
               <option value="4">Popayan</option>
             </select>
           </div>
-        </div>
+
     
     
-        <div class="contenedorInputsEmpleadores">
-          <div class="col-6">
+
+          <div class="mb-2 mt-2">
             <label for="especialidad">Direccion:</label>
-            <input type="text" class="form-control" id="direccionIndeEditar" placeholder="Cra 1 #66-42" required>
+            <input type="text" class="form-control" id="DireccionEditar" placeholder="Cra1 #66-42" required>
           </div>
-          <div class="col-6">
+          <div class="mb-2 mt-2">
             <label for="especialidad">Correo:</label>
-            <input type="email" class="form-control" id="correoIndependienteEditar" placeholder="nicolas@gmail.com" required>
+            <input type="email" class="form-control" id="correoEditar" placeholder="nicolas30rojas@gmail.com" required>
           </div>
-        </div>
+
     
     
         <div class="contenedorInputsEmpleadores">
-          <div class="col-6">
-            <label for="especialidad">Barrio:</label>
-            <input type="text" class="form-control" id="barrioIndeEditar" placeholder="Lopez" required>
+          <div class="mb-2 mt-2">
+            <label for="especialidad">Codigo Postal:</label>
+            <input type="number" class="form-control" id="codigoPostalEmpleador" placeholder="75893" required>
           </div>
-          <div class="col-6">
-            <label for="especialidad">Sede:</label>
-            <select name="especialidad" class="form-select" id="selectSedeEditar" onchange="selectTipoSedeEditar()">
+          <div class="mb-2 mt-2">
+            <label for="especialidad">Regimen:</label>
+            <select name="especialidad" class="form-select" id="selectTipoRegimenEditar" onchange="selectTipoRegimenEditar()">
               <option value="0" selected>Elige</option>
-              <option value="1">Norte</option>
-              <option value="2">Sur</option>
-              <option value="3">Este</option>
-              <option value="4">Oeste</option>
-              <option value="5">Centro</option>
+              <option value="1">Responsable de IVA</option>
+              <option value="2">Persona natural responsable de IVA </option>
+              <option value="3">Regimen Especial</option>
+              <option value="4">Persona natural no responsable de IVA</option>
             </select>
           </div>
         </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary" onclick="actualizarDatos()">Confirmar</button>
+          <button type="button" class="btn btn-primary" onclick="actualizarDatosEmpleadores()">Confirmar</button>
         </div>
       </div>
     </div>
@@ -273,12 +269,12 @@
         <div class="modal-body">
           <div class="p-2">
             <label for="input">Numero de Identificacion:</label>
-            <input type="number" placeholder="1010142247" class="form-control" id="numeroIdenIndependientesEliminar">
+            <input type="number" placeholder="1010142247" class="form-control" id="idenEliminarEmpleador">
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary" onclick="eliminarIdependiente()">Confirmar</button>
+          <button type="button" class="btn btn-primary" onclick="eliminarEmpleador()">Confirmar</button>
         </div>
       </div>
     </div>
@@ -306,7 +302,7 @@
     </div>
   </footer>
 
-  <script src="../js/crudIndependientes.js"></script>
+  <script src="./js/crudEmpleadores.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
     crossorigin="anonymous"></script>
