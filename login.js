@@ -10,7 +10,7 @@ const login = () => {
   usuarioLocal.map((item) => {
     if (item.usuario === usuario && item.contrasena === contraseña) {
       alert(`Ingresando, Bienvenido ${item.usuario}`)
-      window.location.replace('views/inicio.html')
+      window.location.replace('inicio.html')
     } else if (item.usuario !== usuario || item.contrasena !== contraseña) {
       alert('Revisa los datos ingresados')
     }
